@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WikiCardService } from './wiki-card.service';
+import { CustomerDataService } from './customer-data.service';
 
-describe('WikiCardService', () => {
+describe('CustomerDataService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: WikiCardService = TestBed.get(WikiCardService);
+    const service: CustomerDataService = TestBed.get(CustomerDataService);
     expect(service).toBeTruthy();
   });
 });

@@ -1,0 +1,36 @@
+<div class="container-login center-align">
+  <h3 class=".block-head-login">Login</h3>
+  <div class="row center">
+    <div class="col s10 m10 offset-s1 offset-m1">
+      <div class="card">
+        <div class="card-content">
+          <form [formGroup]="loginForm">
+            <div class="input-field">
+              <input
+                formControlName="email"
+                placeholder="Email"
+                id="loginEmail"
+                type="text"
+                class="validate"
+              />
+              <input
+                formControlName="password"
+                placeholder="Password"
+                id="loginPassword"
+                type="password"
+                class="validate"
+              />
+              <button
+                class="btn waves-effect waves-light submit"
+                type="submit"
+                name="action"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
