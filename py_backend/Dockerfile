@@ -1,7 +1,9 @@
-FROM tensorflow/tensorflow:1.12.0-gpu-py3
+FROM ubuntu:latest
 
-COPY ./ /app
-
+RUN apt-get update -y
+RUN apt-get install -y python-pip python-dev build-essential
+COPY . /app
 WORKDIR /app
-
-CMD ["ls"]
+RUN pip install -r requirements.txt
+ENTRYPOINT ["python"]
+CMD ["app.py"]

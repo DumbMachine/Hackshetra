@@ -1,4 +1,5 @@
 import os
+import regex
 
 import requests as r
 from bs4 import BeautifulSoup as soup
@@ -8,6 +9,11 @@ def wiki_get_table(query):
     '''
     Returns the side table from the Wikipedia Page
     '''
+    RESPONSE = {
+        "data": [
+
+        ]
+    }
     URL = "https://en.wikipedia.org/wiki/{query}".format(query=query.replace(" ", "%20"))
     SELECTOR_TABLE = 'table.infobox:nth-child(5)'
     SELECTOR_ROW = ".infobox > tbody:nth-child(1) > tr:nth-child({child_number})"
@@ -30,14 +36,19 @@ def wiki_get_table(query):
                 if row:
                     try:
                         # print(row)
-                        text = soup(str(row), 'lxml').find("tr").get_text().split("[")[0]
-                        print(text)
-                        print("-----------------------------")
+                        RESPONSE['data'].append(
+                            (
+                              soup(str(row), 'lxml').find("th").get_text(),
+                              soup(str(row), 'lxml').find("tr").get_text()  
+                            )
+                        )
                     except:
-                        print("gay: ", row)
+                        text = soup(str(row), 'lxml').find("tr").get_text().split("[")[0]
+                        print("gay: ", text)
                 else:
                     fails+=1
                 count+=1
+    print(RESPONSE)
             # return 0
     # return "Table Not Found"
 
