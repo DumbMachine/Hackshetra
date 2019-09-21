@@ -1,0 +1,15 @@
+.row {
+  margin-bottom: 1px;
+}
+
+.card-content {
+  padding: 5px;
+}
+
+h5 {
+  margin: 1px;
+}
+
+.card-action {
+  padding: 5px;
+}
