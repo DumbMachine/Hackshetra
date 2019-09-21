@@ -6,6 +6,8 @@ import { AppComponent } from "./app.component";
 import { WikiCardComponent } from "./wiki-card/wiki-card.component";
 import { DoctorAppointComponent } from "./doctor-appoint/doctor-appoint.component";
 import { DoctorCardComponent } from "./doctor-appoint/doctor-card/doctor-card.component";
+import { DoctorAppointService } from "./services/doctor-appoint.service";
+import { WikiCardService } from "./services/wiki-card.service";
 
 @NgModule({
   declarations: [
@@ -15,7 +17,7 @@ import { DoctorCardComponent } from "./doctor-appoint/doctor-card/doctor-card.co
     DoctorCardComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+  providers: [DoctorAppointService, WikiCardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { DoctorAppointService } from "../services/doctor-appoint.service";
 
 @Component({
   selector: "app-doctor-appoint",
@@ -6,9 +7,11 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./doctor-appoint.component.css"]
 })
 export class DoctorAppointComponent implements OnInit {
-  items = [1, 2, 3];
+  public doctors = [];
 
-  constructor() {}
+  constructor(private _doctorAppointService: DoctorAppointService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.doctors = this._doctorAppointService.getDoctorList();
+  }
 }
