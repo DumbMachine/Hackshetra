@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-doctor-card',
-  templateUrl: './doctor-card.component.html',
-  styleUrls: ['./doctor-card.component.css']
+  selector: "app-doctor-card",
+  templateUrl: "./doctor-card.component.html",
+  styleUrls: ["./doctor-card.component.css"]
 })
 export class DoctorCardComponent implements OnInit {
+  @Input() doctor = {};
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

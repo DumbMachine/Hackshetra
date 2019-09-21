@@ -7,6 +7,6 @@ export class WikiCardService {
   constructor() {}
 
   getWikiCard() {
-    return {};
+    return [];
   }
 }

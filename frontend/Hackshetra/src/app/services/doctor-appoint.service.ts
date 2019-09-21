@@ -11,17 +11,17 @@ export class DoctorAppointService {
       {
         name: "Dr. Pankaj Chawla",
         description:
-          "General physician<br />M.B.B.S. M.A.<br />Specializes in : General medecine"
+          "General physician \nM.B.B.S. M.A.\nSpecializes in : General medecine"
       },
       {
-        name: "Dr. Pankaj Chawla",
+        name: "Dr. Parul Chauhan",
         description:
-          "General physician<br />M.B.B.S. M.A.<br />Specializes in : General medecine"
+          "General physician\nM.B.B.S. M.A.\nSpecializes in : General medecine"
       },
       {
-        name: "Dr. Pankaj Chawla",
+        name: "Dr. Amit Sharma",
         description:
-          "General physician<br />M.B.B.S. M.A.<br />Specializes in : General medecine"
+          "General physician\nM.B.B.S. M.A.\nSpecializes in : General medecine"
       }
     ];
   }

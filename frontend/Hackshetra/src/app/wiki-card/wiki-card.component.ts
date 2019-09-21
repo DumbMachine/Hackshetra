@@ -7,7 +7,7 @@ import { WikiCardService } from "../services/wiki-card.service";
   styleUrls: ["./wiki-card.component.css"]
 })
 export class WikiCardComponent implements OnInit {
-  public wikiCard = {};
+  public wikiCard = [];
 
   constructor(private _wikiCardService: WikiCardService) {}
 
