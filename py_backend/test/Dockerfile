@@ -1,31 +1,148 @@
-FROM ubuntu:16.04
+FROM nvidia/cuda:9.1-cudnn7-devel
 
-RUN apt-get update && \
-  apt-get install -y software-properties-common && \
-  add-apt-repository ppa:jonathonf/python-3.6
-RUN apt-get update
+LABEL maintainer="Sebastian Ramirez <tiangolo@gmail.com>"
 
-RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip python3.6-venv
-RUN apt-get install -y git
+# Install buildpack-deps:latest with its base image parts, as it is the base for official Python
 
-# update pip
-RUN python3.6 -m pip install pip --upgrade
-RUN python3.6 -m pip install wheel
+# buildpack-deps:curl https://github.com/docker-library/buildpack-deps/blob/master/stretch/curl/Dockerfile
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		ca-certificates \
+		curl \
+		netbase \
+		wget \
+	&& rm -rf /var/lib/apt/lists/*
+
+RUN set -ex; \
+	if ! command -v gpg > /dev/null; then \
+		apt-get update; \
+		apt-get install -y --no-install-recommends \
+			gnupg \
+			dirmngr \
+		; \
+		rm -rf /var/lib/apt/lists/*; \
+	fi
+# End buildpack-deps:curl
+
+# buildpack-deps:scm https://github.com/docker-library/buildpack-deps/blob/master/stretch/scm/Dockerfile
+
+# procps is very common in build systems, and is a reasonably small package
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		bzr \
+		git \
+		mercurial \
+		openssh-client \
+		subversion \
+		\
+		procps \
+	&& rm -rf /var/lib/apt/lists/*
+
+# End buildpack-deps:scm
+
+# buildpack-deps:latest https://github.com/docker-library/buildpack-deps/blob/master/stretch/Dockerfile
+
+RUN set -ex; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		autoconf \
+		automake \
+		bzip2 \
+		dpkg-dev \
+		file \
+		g++ \
+		gcc \
+		imagemagick \
+		libbz2-dev \
+		libc6-dev \
+		libcurl4-openssl-dev \
+		libdb-dev \
+		libevent-dev \
+		libffi-dev \
+		libgdbm-dev \
+		libgeoip-dev \
+		libglib2.0-dev \
+		libgmp-dev \
+		libjpeg-dev \
+		libkrb5-dev \
+		liblzma-dev \
+		libmagickcore-dev \
+		libmagickwand-dev \
+		libncurses5-dev \
+		libncursesw5-dev \
+		libpng-dev \
+		libpq-dev \
+		libreadline-dev \
+		libsqlite3-dev \
+		libssl-dev \
+		libtool \
+		libwebp-dev \
+		libxml2-dev \
+		libxslt-dev \
+		libyaml-dev \
+		make \
+		patch \
+		unzip \
+		xz-utils \
+		zlib1g-dev \
+		\
+# https://lists.debian.org/debian-devel-announce/2016/09/msg00000.html
+		$( \
+# if we use just "apt-cache show" here, it returns zero because "Can't select versions from package 'libmysqlclient-dev' as it is purely virtual", hence the pipe to grep
+			if apt-cache show 'default-libmysqlclient-dev' 2>/dev/null | grep -q '^Version:'; then \
+				echo 'default-libmysqlclient-dev'; \
+			else \
+				echo 'libmysqlclient-dev'; \
+			fi \
+		) \
+	; \
+	rm -rf /var/lib/apt/lists/*
+
+# End buildpack-deps:latest
+
+ENV PYTHON_VERSION=3.6
+
+# Conda, fragments from: https://github.com/ContinuumIO/docker-images/blob/master/miniconda3/Dockerfile
+# Explicit install of Python 3.7 with:
+# /opt/conda/bin/conda install -y python=$PYTHON_VERSION && \
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+ENV PATH /opt/conda/bin:$PATH
+
+RUN apt-get update --fix-missing && \
+    apt-get install -y wget bzip2 ca-certificates curl git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.12-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+    rm ~/miniconda.sh && \
+    /opt/conda/bin/conda install -y python=$PYTHON_VERSION && \
+    /opt/conda/bin/conda clean -tipsy && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
+
+# End Conda
+
+RUN pip install --upgrade pip
+RUN pip install cudatoolkit
+RUN pip install cudnn
 
 RUN wget  https://anaconda.org/pytorch/faiss-cpu/1.2.1/download/linux-64/faiss-cpu-1.2.1-py36_cuda9.0.176_1.tar.bz2
 RUN tar xvjf faiss-cpu-1.2.1-py36_cuda9.0.176_1.tar.bz2
 RUN cp -r lib/python3.6/site-packages/* /usr/local/lib/python3.6/dist-packages/
 RUN pip install mkl
-RUN pip install tensorflow-gpu==2.0.0-alpha0
+# RUN pip install tensorflow-gpu==2.0.0-alpha0
+# RUN pip install pycurl
+RUN  apt-get install -y --no-install-recommends libcurl4-openssl-dev \ 
+    libssl-dev
 RUN pip install https://github.com/re-search/DocProduct/archive/v0.2.0_dev.zip
 RUN pip install gpt2-estimator
 RUN pip install pyarrow
-
+RUN pip install bs4 
+RUN pip install flask 
 
 
 WORKDIR /usr/src/app
-COPY ./script.sh .
-
-
+# COPY . .
 EXPOSE 5000
-CMD ["bash", "run"]
+
+CMD ["python", "server.py"]

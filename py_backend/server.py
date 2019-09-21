@@ -58,11 +58,12 @@ def test():
     return data
 
 @app.route('/predict', methods=['POST'])
-def get_prediction(query):
+def get_prediction():
     '''
     Will return the analysed things after predicting from the query
     '''
     global MODEL_LOADED
+    query = request.json['query']
     if MODEL_LOADED:
         prediction =  DOCTOR.predict(
             query,
@@ -70,25 +71,9 @@ def get_prediction(query):
             topk=1,
             answer_only=True)
 
-        return jsonify({
-            "meta": {
-                "status": "Model Loaded",
-                "time" : time.time()
-            },
-            "response" : {
-                "data": prediction[0],
-            }
-        })
+        return jsonify(prediction)
     else:
-        return jsonify({
-            "meta": {
-                "status": "Model Not Loaded Yet",
-                "time" : time.time()
-            },
-            "response" : {
-                "data": "None",
-            }
-        })
+        return "Error"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

@@ -5,10 +5,15 @@ app = Flask(__name__)
 
 @app.route('/score', methods=['POST'])
 def score():
-    features = request.json['X']
+    features = request.json['username']
     return make_response(jsonify({'score': features}))
+
+@app.route('/', methods=['GET'])
+def something():
+    return "gay amam"
+
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
     

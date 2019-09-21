@@ -1,0 +1,79 @@
+{
+  "paths": [
+    {
+      "_path": "lib/python3.6/site-packages/faiss-0.1-py3.6.egg-info/PKG-INFO",
+      "path_type": "hardlink",
+      "sha256": "9f4db02d1cf3eef7e92198c260e94b72328f0912bc5bd5fcea33eae155393437",
+      "size_in_bytes": 873
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss-0.1-py3.6.egg-info/SOURCES.txt",
+      "path_type": "hardlink",
+      "sha256": "d9f44e99bf6ce61d1da844ef2f8bb2dd843563c43d8c0843f91afcd998345c41",
+      "size_in_bytes": 219
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss-0.1-py3.6.egg-info/dependency_links.txt",
+      "path_type": "hardlink",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_in_bytes": 1
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss-0.1-py3.6.egg-info/native_libs.txt",
+      "path_type": "hardlink",
+      "sha256": "6a0ba991d59ac9537279d3ebcd49fc0de4e2d39bdf9738e50eb6422346321e3e",
+      "size_in_bytes": 20
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss-0.1-py3.6.egg-info/not-zip-safe",
+      "path_type": "hardlink",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_in_bytes": 1
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss-0.1-py3.6.egg-info/requires.txt",
+      "path_type": "hardlink",
+      "sha256": "e09f656c130b9c08b2c5ab7187c891295e449ed77febea2a6ceee9cc98ccb0fc",
+      "size_in_bytes": 6
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss-0.1-py3.6.egg-info/top_level.txt",
+      "path_type": "hardlink",
+      "sha256": "9ebd92fb560086a02e025149ba49ed0ef4465df2352a6c2750db3f88594d8a28",
+      "size_in_bytes": 6
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss/__init__.py",
+      "path_type": "hardlink",
+      "sha256": "74f38e7e9b208148dfcefa98124e91c6193d047c208a8cfb575886d6365a07e7",
+      "size_in_bytes": 13459
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss/__pycache__/__init__.cpython-36.pyc",
+      "path_type": "hardlink",
+      "sha256": "361fcc329034d0feae6c950f9913ce9f0d3ff57d6124564cdf57233cff91ea95",
+      "size_in_bytes": 14034
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss/__pycache__/swigfaiss.cpython-36.pyc",
+      "path_type": "hardlink",
+      "sha256": "89ef50e06cfd225ce4a951aad4afc2aeb8d0210e2e98a40577727ab4eb1e1f01",
+      "size_in_bytes": 206367
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss/_swigfaiss.so",
+      "file_mode": "binary",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/opt/conda/conda-bld/faiss-cpu_1520911189073/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+      "sha256": "fc70fe04238a980aae7fe07b98f14a8973f840bf9cafe6cf364d5960f43690c9",
+      "size_in_bytes": 13646006
+    },
+    {
+      "_path": "lib/python3.6/site-packages/faiss/swigfaiss.py",
+      "path_type": "hardlink",
+      "sha256": "97e5edc2294917f6272a4d98da325fb04f3ec8f810f7bdef2e4757ec644358ca",
+      "size_in_bytes": 207379
+    }
+  ],
+  "paths_version": 1
+}
