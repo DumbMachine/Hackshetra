@@ -2,20 +2,6 @@ import os
 
 import requests as r
 from bs4 import BeautifulSoup as soup
-from docproduct.predictor import RetreiveQADoc
-
-MODEL_LOADED = False
-
-PRETRAINED_PATH = os.path.join(os.path.expanduser("~"), "data", "BioBert", "biobert_v1.0_pubmed_pmc")
-BERT_FFN_WEIGHT_FILE = os.path.join(os.path.expanduser("~"), "data", "newFolder", "models", "bertffn_crossentropy", "bertffn")
-EMBEDDING_FILE = os.path.join(os.path.expanduser("~"), "data", "Float16EmbeddingsExpanded5-27-19.pkl")
-
-DOCTOR = RetreiveQADoc(
-    pretrained_path=PRETRAINED_PATH,
-    ffn_weight_file=None,
-    bert_ffn_weight_file=BERT_FFN_WEIGHT_FILE,
-    embedding_file=EMBEDDING_FILE
-)
 
 
 def wiki_get_table(query):
