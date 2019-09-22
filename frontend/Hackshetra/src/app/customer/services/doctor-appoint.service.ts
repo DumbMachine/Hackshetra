@@ -1,28 +1,13 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
 })
 export class DoctorAppointService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getDoctorList() {
-    return [
-      {
-        name: "Dr. Pankaj Chawla",
-        description:
-          "General physician \nM.B.B.S. M.A.\nSpecializes in : General medecine"
-      },
-      {
-        name: "Dr. Parul Chauhan",
-        description:
-          "General physician\nM.B.B.S. M.A.\nSpecializes in : General medecine"
-      },
-      {
-        name: "Dr. Amit Sharma",
-        description:
-          "General physician\nM.B.B.S. M.A.\nSpecializes in : General medecine"
-      }
-    ];
+    return this.http.get("https://caf3e4a2.ngrok.io/doctor");
   }
 }

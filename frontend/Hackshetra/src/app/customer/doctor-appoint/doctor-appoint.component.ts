@@ -7,11 +7,13 @@ import { DoctorAppointService } from "../services/doctor-appoint.service";
   styleUrls: ["./doctor-appoint.component.css"]
 })
 export class DoctorAppointComponent implements OnInit {
-  public doctors = [];
+  public doctors;
 
   constructor(private _doctorAppointService: DoctorAppointService) {}
 
   ngOnInit() {
-    this.doctors = this._doctorAppointService.getDoctorList();
+    this._doctorAppointService.getDoctorList().subscribe(data => {
+      this.doctors = data;
+    });
   }
 }

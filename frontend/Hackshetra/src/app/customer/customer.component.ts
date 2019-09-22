@@ -17,6 +17,8 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit() {
     let userId = parseInt(this.route.snapshot.paramMap.get("userId"));
-    this.userData = this._customerDataService.getCustomerData(userId);
+    this._customerDataService.getCustomerData(userId).subscribe(data => {
+      this.userData = data;
+    });
   }
 }

@@ -1,6 +1,6 @@
 <div class="container-doc center-align">
   <h3 class="block-head-doc">Doctor's Appointment</h3>
-  <div *ngFor="let doctor of doctors">
+  <div *ngFor="let doctor of doctors.data">
     <app-doctor-card [doctor]="doctor"></app-doctor-card>
   </div>
 </div>

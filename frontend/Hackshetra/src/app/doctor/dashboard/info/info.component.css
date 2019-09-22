@@ -1,0 +1,33 @@
+.container-info {
+  background-color: whitesmoke;
+  height: 100vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  width: 40vw;
+}
+
+.block-head-wiki {
+  margin-bottom: 20px;
+}
+
+.row {
+  margin-bottom: 1px;
+}
+
+.card-content {
+  padding: 5px;
+}
+
+h5 {
+  margin: 1px;
+}
+
+.card-action {
+  padding: 5px;
+}
+
+.submit {
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  width: 80%;
+}

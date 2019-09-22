@@ -6,7 +6,9 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./wiki-card.component.css"]
 })
 export class WikiCardComponent implements OnInit {
-  @Input() wikiCard = {};
+  @Input() wikiCard;
+
+  // wiki = JSON.parse(this.wikiCard);
 
   constructor() {}
 

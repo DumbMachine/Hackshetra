@@ -10,6 +10,7 @@ import { DoctorAppointService } from "./customer/services/doctor-appoint.service
 import { CustomerComponent } from "./customer/customer.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { DoctorModule } from "./doctor/doctor.module";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { DoctorModule } from "./doctor/doctor.module";
     CustomerComponent,
     NotFoundComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, DoctorModule],
+  imports: [BrowserModule, AppRoutingModule, DoctorModule, HttpClientModule],
   providers: [DoctorAppointService],
   bootstrap: [AppComponent]
 })
