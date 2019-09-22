@@ -22,7 +22,7 @@
 ```
 Make sure you have a good internet connection, otherwise don't even try this. Please dont no.
 ```
-1. Download the required data for the model and install 
+1. Download the required data for the model and install .
 ```
 $ cd py_backend
 $ wget  https://anaconda.org/pytorch/faiss-gpu/1.2.1/download/linux-64/faiss-gpu-1.2.1-py36_cuda9.0.176_1.tar.bz2
@@ -33,4 +33,20 @@ $ pip install tensorflow-gpu==2.0.0-alpha0
 $ conda install pycurl  # dont forget this, otherwise the next one won't work
 $ pip install https://github.com/Santosh-Gupta/DocProduct/archive/master.zip
 ```
-2. 
+2. Run the model and firebase actions.
+```
+$ python server.py
+$ ngrok http 5000
+$ cd ..
+$ cd node_backend
+$ cd Google Assistant
+$ npm install
+# Initialize you gcp account and google cloud shell
+$ firebase deploy --only functions
+```
+3. Run the frontend
+```
+$ cd hackshetra-node
+$ ng serve
+$ ngrok http 3000
+```
