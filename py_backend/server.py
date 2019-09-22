@@ -25,35 +25,25 @@ DOCTOR = RetreiveQADoc(
 MODEL_LOADED = True
 print("\n\n MODEL LOADED YAY 😀")
 
-@app.route('/table', methods=['POST'])
+@app.route('/wiki', methods=['POST'])
 def table():
-    data = request.json
-    if 'auth_key' in data.keys() and data['auth_key'] in ['ratin', 'naman', 'anshika']:
-        print("not-gay")
-        query = data['query']
+    '''
+    Will return the data from side table from WikiPedia
+    '''
+    try:
+        query = request.json['query']
+        return jsonify(wiki.wiki_get_table(query))
+        
+    except Exception as e:
         return jsonify({
-                "meta": {
-                    "status": "Response Succesful",
-                    "time": time.time()
-                },
-                "response" : {
-                    "data": str(wiki.wiki_get_table(query)),
-                }
-            })
-
-    else:
-        return jsonify({
-                "meta": {
-                    "status": "Not Authorized",
-                    "time": time.time()
-                },
-                "response" : {
-                    "data": "None",
-                }
-            })
+            "data" : e
+        })
 
 @app.route('/test', methods=['POST'])
 def test():
+    '''
+    Sample API Endpoint to check the working of the model
+    '''
     data = request.json
     return data
 
@@ -71,20 +61,16 @@ def get_prediction():
             topk=1,
             answer_only=True)
 
-        return jsonify(prediction)
+
+        return jsonify({
+            # "data": ". ".join[(text.strip()[0].capitalize() + text.strip()[1:]) for text in prediction.split(".")]
+            "data": prediction[0]
+        })
     else:
-        return "Error"
+        return jsonify({
+            "data" : "Model Note Yet loaded, try again latter"
+        })
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
 
-
-'''
-Sample POST Request
-{"auth_key": "ratin", "query": "HIV/AIDS"}
-
-Sample Wrong POST Request
-{"query": "HIV"}
-
-
-'''
