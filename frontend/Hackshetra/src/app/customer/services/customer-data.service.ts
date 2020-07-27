@@ -8,6 +8,6 @@ export class CustomerDataService {
   constructor(private http: HttpClient) {}
 
   getCustomerData(userId) {
-    return this.http.get("https://caf3e4a2.ngrok.io/" + userId);
+    return this.http.get("https://caf3e4a2.ngrok.io/user1");
   }
 }
